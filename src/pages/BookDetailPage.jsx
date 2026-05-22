@@ -10,7 +10,7 @@ function BookDetailPage() {
       try {
         const response = await fetch("http://localhost:3000/books/1");
         const data = await response.json();
-
+        
         setBook(data);
       } catch (error) {
         console.error("도서 상세 조회 실패:", error);
@@ -21,6 +21,10 @@ function BookDetailPage() {
 
     fetchBook();
   }, []);
+
+  function handleImageGenerated(imageUrl) {
+    setBook((prev) => ({ ...prev, coverImageUrl: imageUrl }));
+  }
 
   if (loading) {
     return <p>도서 정보를 불러오는 중입니다...</p>;
@@ -39,7 +43,7 @@ function BookDetailPage() {
 
       <hr />
 
-      <CoverImageGenerator book={book} />
+      <CoverImageGenerator book={book} onImageGenerated={handleImageGenerated} />
 
       <hr />
 
