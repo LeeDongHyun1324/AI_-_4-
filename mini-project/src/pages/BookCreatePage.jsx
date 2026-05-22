@@ -1,10 +1,8 @@
-function BookCreatePage() {function BookCreatePage새 도서 등록</h1>
-
-      {/* 제목 입력 */}
+function BookCreatePage() {function BookCreatePage */}
       <input
         type="text"
         className="input-title"
-        placeholder="도서 제목을 입력하세요"
+        placeholder="도서명을 입력하세요"
       />
 
       {/* 내용 입력 */}
@@ -21,7 +19,7 @@ function BookCreatePage() {function BookCreatePage새 도서 등록</h1>
 }
 
 export default BookCreatePage;
-
   return (
     <div>
       {/* 페이지 제목 */}
+      <h1 className="page-title">새 도서 등록</h1>
