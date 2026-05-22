@@ -1,7 +1,13 @@
 {
-"books": [
-{ "id": 1, "title": "  ", "author": "","content": "   1  ",
-"coverImageUrl": "","createdAt": "2026-04-24T09:00:00.000Z",
-"updatedAt": "2026-04-24T09:00:00.000Z"}
-]
+  "books": [
+    {
+      "id": 1,
+      "title": "상록수",
+      "author": "심훈",
+      "content": "에이블스쿨 9기의 수강생이 이전의 과정에서 실습자료로 활용한 상록수의 내용을 표지에 담고 싶어.",
+      "coverImageUrl": "",
+      "createdAt": "2026-04-24T09:00:00.000Z",
+      "updatedAt": "2026-04-24T09:00:00.000Z"
+    }
+  ]
 }
