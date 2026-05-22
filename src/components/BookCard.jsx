@@ -2,17 +2,23 @@ export default function BookCard({ book, onDelete }) {
   return (
     <div className="book-card">
       {book.coverImageUrl ? (
-        <img className="book-card-cover" src={book.coverImageUrl} alt={book.title} />
+        <img className="card-cover" src={book.coverImageUrl} alt={book.title} />
       ) : (
-        <div className="book-card-cover book-card-cover--empty" />
+        <div className="card-cover card-cover--empty">표지 없음</div>
       )}
-      <div className="book-card-info">
-        <h3 className="book-card-title">{book.title}</h3>
-        <p className="book-card-author">{book.author}</p>
+      <div className="card-info">
+        <h2 className="card-title">{book.title}</h2>
+        <p className="card-author">{book.author}</p>
+        <p className="card-content">{book.content}</p>
       </div>
-      <button className="book-card-delete" onClick={() => onDelete(book.id)}>
-        삭제
-      </button>
+      <div className="card-buttons">
+        <button className="btn-edit" onClick={() => alert(`${book.id} 수정`)}>
+          수정
+        </button>
+        <button className="btn-delete" onClick={() => onDelete(book.id)}>
+          삭제
+        </button>
+      </div>
     </div>
   );
 }
