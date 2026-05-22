@@ -1,13 +1,3 @@
 {
-  "books": [
-    {
-      "id": 1,
-      "title": "채식주의자",
-      "author": "한강",
-      "content": "도서 내용 1",
-      "coverImageUrl": "",
-      "createdAt": "2026-04-24T09:00:00.000Z",
-      "updatedAt": "2026-04-24T09:00:00.000Z"
-    }
-  ]
+  "books": []
 }
