@@ -6,8 +6,8 @@ import BookEditPage from './pages/BookEditPage';
 
 function App() {
   return (
-    //<HomePage />
-    <BookEditPage/>
+    <HomePage />
+    //<BookEditPage/>
   )
 }
 
