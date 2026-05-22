@@ -1,3 +1,4 @@
+import Navbar from "./components/Navbar";
 import BookDetailPage from "./pages/BookDetailPage";
 import "./App.css";
 
