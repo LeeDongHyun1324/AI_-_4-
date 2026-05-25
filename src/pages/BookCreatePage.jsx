@@ -1,5 +1,6 @@
 
 import { useState } from 'react';
+import "./BookCreatePage.css";
 
 function BookCreatePage() {
     const [title, setTitle] = useState('');
@@ -27,27 +28,27 @@ function BookCreatePage() {
             <input
                 type="text"
                 className = "input-title"
-                placeholder = "제목을 입력하세요"
+                placeholder = "도서 제목을 입력하세요"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
             />          
 
             <textarea
             className="input-content"
-            placeholder="내용을 입력하세요"
+            placeholder="도서의 내용을 입력하세요"
             value={content}
             onChange={(e) => setContent(e.target.value)}
             />
 
-            <div>
+            <div className="button-group">
 
-            <button className="btn-cancel" onClick={handleCancel}>
-            취소
-            </button>
+                <button className="btn-cancel" onClick={handleCancel}>
+                    취소
+                </button>
 
-            <button className="btn-submit" onClick={handleSubmit}>
-            저장
-            </button>
+                <button className="btn-submit" onClick={handleSubmit}>
+                    저장
+                </button>
 
             </div>
         </div>
