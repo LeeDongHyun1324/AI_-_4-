@@ -9,7 +9,7 @@ function BookEditPage({ book, onCancel, onSuccess }) {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      await updateBook(book.id, { title, author, content });
+      await updateBook(book.id, { title, author, content,  updatedAt: new Date().toLocaleString("sv-SE", {timeZone: "Asia/Seoul"})});
       alert('성공적으로 수정되었습니다.');
       onSuccess();
     } catch (err) {
@@ -40,7 +40,7 @@ function BookEditPage({ book, onCancel, onSuccess }) {
             onChange={(e) => setAuthor(e.target.value)}
           />
         </div>
-        
+
         <div className="input-group">
           <textarea
             className="input-content"
