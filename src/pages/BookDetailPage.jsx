@@ -4,6 +4,8 @@ import { deleteBook } from '../api/books';
 import CoverImageGenerator from "../components/CoverImageGenerator";
 import { getBookById } from "../api/books";
 
+import "./BookDetailPage.css";
+
 function BookDetailPage({ onNavigate, bookId, onEditClick }) {
   const [book, setBook] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -46,7 +48,7 @@ function BookDetailPage({ onNavigate, bookId, onEditClick }) {
   }
 
   return (
-    <main>
+    <main className="detail-page">
       {/* 도서 제목 */}
       <h2 className="book-title">{book.title}</h2>
 
@@ -71,7 +73,7 @@ function BookDetailPage({ onNavigate, bookId, onEditClick }) {
           width="250"
         />
       ) : (
-        <p className="book-cover">표지 이미지 없음</p>
+        <p className="book-cover-empty">표지 이미지 없음</p>
       )}
 
       {/* 도서 상세 정보 */}
@@ -82,7 +84,7 @@ function BookDetailPage({ onNavigate, bookId, onEditClick }) {
       <p className="updatedAt">수정일: {book.updatedAt}</p>
       
       {/* 목록으로 돌아가기 버튼 */}
-      <button className="btn-back" onClick={() => onNavigate("list")}>도서 목록으로 돌아가기</button>
+      <button className="detail-back-btn" onClick={() => onNavigate("list")}>도서 목록으로 돌아가기</button>
     </main>
   );
 }
