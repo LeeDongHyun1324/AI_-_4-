@@ -9,7 +9,7 @@ function BookDetailPage() {
   useEffect(() => {
     async function fetchBook() {
       try {
-        const response = await fetch("http://localhost:3000/books/1"); //현재 db.json파일 1개만 추가해놓은 상태로 하드코딩. 배포 시 http://localhost:3000/books/${id}로 변경
+        const response = await fetch("http://localhost:3000/books/3"); //현재 db.json파일 1개만 추가해놓은 상태로 하드코딩. 배포 시 http://localhost:3000/books/${id}로 변경
         const data = await response.json();
         setBook(data);
       } catch (error) {
