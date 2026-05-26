@@ -97,7 +97,7 @@ export default function CoverImageGenerator({ book, onImageGenerated }) {
       <br />
 
       {/* 이미지 생성 버튼 */}
-      <button type="button" className="generator-btn" onClick={handleGenerate} disabled={loading}>
+      <button type="button" onClick={handleGenerate} disabled={loading}>
         {loading ? '생성 중...' : 'AI 표지 생성'}
       </button>
 
