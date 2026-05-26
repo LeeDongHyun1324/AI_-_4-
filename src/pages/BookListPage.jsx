@@ -32,10 +32,11 @@ export default function BookListPage({onNavigate, onEditClick, setSelectedBookId
     <div className="book-list-page">
       <div className="book-list-header">
         <div className="header-actions">
+        
           {/* 검색창 추가 */}
           <input
             type="text"
-            placeholder="도서 제목 검색"
+            placeholder="도서 제목, 저자, 내용 검색"
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
             className="search-input"
