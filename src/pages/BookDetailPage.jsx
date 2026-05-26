@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+import { deleteBook } from '../api/books';
+
 import CoverImageGenerator from "../components/CoverImageGenerator";
 import { getBookById } from "../api/books";
 
-function BookDetailPage({ onNavigate, bookId }) {
+function BookDetailPage({ onNavigate, bookId, onEditClick }) {
   const [book, setBook] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -32,14 +34,27 @@ function BookDetailPage({ onNavigate, bookId }) {
   if (loading) return <p>도서 정보를 불러오는 중입니다...</p>;
   if (!book) return <p>도서 정보를 찾을 수 없습니다.</p>;
 
+  // 삭제 함수
+  async function handleDelete(id) {
+      if (!window.confirm('정말 삭제하시겠습니까?')) return;
+      try {
+        await deleteBook(id);
+        onNavigate("list") // 삭제 시 바로 목록으로 이동
+      } catch (err) {
+        alert(err.message);
+      }
+  }
+
   return (
     <main>
       {/* 도서 제목 */}
       <h2 className="book-title">{book.title}</h2>
 
       {/* 수정/삭제 버튼 */}
-      <button className="btn-edit">수정</button>
-      <button className="btn-delete">삭제</button>
+      <button className="btn-edit" onClick={() => onEditClick(book)}>
+        수정
+      </button>
+      <button className="btn-delete" onClick={() => handleDelete(book.id)}>삭제</button>
 
       <hr />
       {/* AI 표지 생성 컴포넌트 */}
