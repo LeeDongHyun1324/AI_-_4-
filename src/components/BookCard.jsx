@@ -1,4 +1,4 @@
-export default function BookCard({ book, onDelete, onNavigate }) {
+export default function BookCard({ book, onDelete }) {
   return (
     <div className="book-card">
       {book.coverImageUrl ? (
@@ -21,4 +21,4 @@ export default function BookCard({ book, onDelete, onNavigate }) {
       </div>
     </div>
   );
-}
+} 
