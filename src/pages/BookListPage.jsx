@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { getBooks, deleteBook } from '../api/books';
 import BookCard from '../components/BookCard';
 
-export default function BookListPage({ onNavigate }) {
+export default function BookListPage({onNavigate, onEditClick, setSelectedBookId}) {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -31,7 +31,7 @@ export default function BookListPage({ onNavigate }) {
     <div className="book-list-page">
       <div className="book-list-header">
         <h1>도서 목록</h1>
-        <button className="btn-primary" onClick={() => onNavigate("create")}>
+        <button className="btn-primary" onClick={() => onNavigate('create')}>
           + 도서 등록
         </button>
       </div>
@@ -41,10 +41,12 @@ export default function BookListPage({ onNavigate }) {
       ) : (
         <ul className="book-list">
           {books.map((book) => (
-            <li key={book.id}>
-              <BookCard book={book} onDelete={handleDelete}
-              onNavigate={onNavigate}
-               />
+            <li key={book.id} onClick={() => {
+                setSelectedBookId(book.id);
+                onNavigate("detail");
+              }}
+              >
+              <BookCard book={book} onDelete={handleDelete} onEdit={onEditClick}/>
             </li>
           ))}
         </ul>
