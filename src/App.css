@@ -703,8 +703,10 @@ body {
 /* ── BookListPage ── */
 .book-list-page {
   max-width: 960px;
+
   margin: 0 auto;
-  padding: 32px 20px;
+
+  padding: 40px 20px 60px;
 }
  
 .book-list-header {
@@ -739,6 +741,53 @@ body {
  
 .status-message--error {
   color: var(--color-danger);
+}
+
+.header-actions {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.search-input {
+  flex: 1;
+
+  height: 52px;
+
+  padding: 0 18px;
+
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+
+  background-color: var(--color-white);
+
+  font-size: 15px;
+  font-family: sans-serif;
+
+  color: var(--color-text-main);
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.15s ease;
+}
+
+.search-input::placeholder {
+  color: var(--color-text-sub);
+  font-size: 14px;
+}
+
+.search-input:focus {
+  border-color: var(--color-primary);
+
+  box-shadow:
+    0 0 0 4px rgba(37, 99, 235, 0.12);
+
+  background-color: #ffffff;
 }
  
 /* ── BookCard ── */
@@ -814,19 +863,36 @@ body {
  
 /* ── Buttons ── */
 .btn-primary {
-  padding: 10px 20px;
+  height: 52px;
+
+  padding: 0 22px;
+
   border: none;
-  border-radius: 8px;
+  border-radius: 14px;
+
   background: var(--color-primary);
   color: var(--color-white);
+
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 700;
+
+  white-space: nowrap;
+
   cursor: pointer;
-  transition: opacity 0.2s;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
 }
  
 .btn-primary:hover {
-  opacity: 0.85;
+  background-color: var(--color-primary-hover);
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 6px 16px rgba(37, 99, 235, 0.18);
 }
  
 .btn-edit {
