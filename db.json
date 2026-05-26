@@ -1,3 +1,13 @@
 {
-  "books": []
+  "books": [
+    {
+      "id": 1,
+      "title": "샘플 도서",
+      "author": "홍길동",
+      "content": "샘플 도서 내용입니다.",
+      "coverImageUrl": "",
+      "createdAt": "2026-04-24T09:00:00.000Z",
+      "updatedAt": "2026-04-24T09:00:00.000Z"
+    }
+  ]
 }
