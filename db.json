@@ -1,20 +1,9 @@
 {
     "books": [
-        { "id": 1, 
-        "title": "title", 
-        "author": "kmim",
-        "content": "   1  ",
-        "coverImageUrl": "",
-        "createdAt": "2026-04-24T09:00:00.000Z",
-        "updatedAt": "2026-04-24T09:00:00.000Z"
-        }, 
-        { "id": 2, 
-        "title": "our great escape", 
-        "author": "just park",
-        "content": "Three of them were devil. and there's nothing at all.",
-        "coverImageUrl": "",
-        "createdAt": "2026-04-24T09:00:00.000Z",
-        "updatedAt": "2026-04-24T09:00:00.000Z"
+        { 
+            "id": 1, "title": "  ", "author": "","content": "   1  ",
+            "coverImageUrl": "","createdAt": "2026-04-24T09:00:00.000Z",
+            "updatedAt": "2026-04-24T09:00:00.000Z"
         }
     ]
 }
