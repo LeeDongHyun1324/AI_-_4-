@@ -69,14 +69,14 @@ function BookCreatePage() {
   };
 
   const handleCancel = () => {
-    console.log("닫기");
+    console.log("취소");
   };
 
   return (
     <BookForm
       onSubmit={handleCreate}
       onCancel={handleCancel}
-      submitText="등록"
+      submitText="저장"
     />
   );
 }

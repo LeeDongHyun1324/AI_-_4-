@@ -34,7 +34,7 @@ function BookForm({
   return (
     <div className="modal-overlay">
       <div className="form-box">
-        <h1 className="page-title">도서 정보</h1>
+        <h1 className="page-title">새 도서 등록</h1>
 
         <input
           type="text"

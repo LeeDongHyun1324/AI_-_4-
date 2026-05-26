@@ -88,7 +88,7 @@
 } */
 
 
-//창버전
+/* 창버전 */
 
 body {
   margin: 0;
@@ -237,3 +237,10 @@ body {
 .input-content::placeholder {
   color: #97a0b2;
 }
+
+.input-title::placeholder,
+.input-content::placeholder {
+  font-family: sans-serif;
+  font-size: 18px;
+  color: #888;
+} 
