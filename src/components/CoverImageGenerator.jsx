@@ -50,7 +50,7 @@ export default function CoverImageGenerator({ book, onImageGenerated }) {
     <section>
       <h3>AI 표지 생성</h3>
 
-      {/* AI키 입력 */}
+      {/* API키 입력 */}
       <label>OpenAI API Key:</label>
       <input
         className="input-apikey"
