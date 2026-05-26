@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { deleteBook } from '../api/books';
 
 import CoverImageGenerator from "../components/CoverImageGenerator";
+import { getBookById } from "../api/books";
 
 function BookDetailPage({ onNavigate, bookId, onEditClick }) {
   const [book, setBook] = useState(null);
@@ -11,8 +12,9 @@ function BookDetailPage({ onNavigate, bookId, onEditClick }) {
   useEffect(() => {
     async function fetchBook() {
       try {
-        const response = await fetch(`http://localhost:3000/books/${bookId}`); //현재 db.json파일 1개만 추가해놓은 상태로 하드코딩. 배포 시 http://localhost:3000/books/${id}로 변경
-        const data = await response.json();
+        const data = await getBookById(bookId);
+        // const response = await fetch(`http://localhost:3000/books/${bookId}`); //현재 db.json파일 1개만 추가해놓은 상태로 하드코딩. 배포 시 http://localhost:3000/books/${id}로 변경
+        // const data = await response.json();
         setBook(data);
       } catch (error) {
         console.error("도서 상세 조회 실패:", error);
@@ -22,6 +24,7 @@ function BookDetailPage({ onNavigate, bookId, onEditClick }) {
     }
     fetchBook();
   }, [bookId]);
+
 
   //AI 표지 이미지 생성 후 상태 업데이트
   function handleImageGenerated(imageUrl) {
