@@ -1,3 +1,4 @@
+
 import { useState } from 'react'
 import "./App.css";
 import Navbar from './components/Navbar';
@@ -10,6 +11,18 @@ function App() {
 
   return (
     <>
+<<<<<<< HEAD
+      <Navbar />
+      <HomePage />
+      <BookEditPage/>
+
+    </>
+  )
+
+}
+
+export default App;
+=======
       <Navbar onNavigate={setPage} />
       {page === 'home' && <HomePage onNavigate={setPage} />}
       {page === 'list' && <BookListPage />}
@@ -19,3 +32,4 @@ function App() {
 }
 
 export default App;
+>>>>>>> ffe3fa40bea1187099d30890ea03702ed430d9eb
