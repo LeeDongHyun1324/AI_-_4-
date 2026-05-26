@@ -1,4 +1,4 @@
-export default function BookCard({ book, onDelete }) {
+export default function BookCard({ book, onDelete, onEdit }) {
   return (
     <div className="book-card">
       {book.coverImageUrl ? (
@@ -12,13 +12,20 @@ export default function BookCard({ book, onDelete }) {
         <p className="card-content">{book.content}</p>
       </div>
       <div className="card-buttons">
-        <button className="btn-edit" onClick={() => alert(`${book.id} 수정`)}>
+        <button className="btn-edit" onClick={(e) => 
+            {e.stopPropagation();
+            onEdit(book);
+            }}
+          >
           수정
         </button>
-        <button className="btn-delete" onClick={() => onDelete(book.id)}>
+        <button className="btn-delete" onClick={(e) => 
+            {e.stopPropagation();
+            onDelete(book.id);
+            }}>
           삭제
         </button>
       </div>
     </div>
   );
-}
+} 
