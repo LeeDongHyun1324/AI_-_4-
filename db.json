@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "books": [
     {
       "id": 1,
@@ -10,4 +11,13 @@
       "updatedAt": "2026-04-24T09:00:00.000Z"
     }
   ]
+=======
+    "books": [
+        { 
+            "id": 1, "title": "  ", "author": "","content": "   1  ",
+            "coverImageUrl": "","createdAt": "2026-04-24T09:00:00.000Z",
+            "updatedAt": "2026-04-24T09:00:00.000Z"
+        }
+    ]
+>>>>>>> 8e46784fc5eb5079b9bae09bf9f747ff83e58e93
 }
