@@ -8,6 +8,15 @@
       "coverImageUrl": "",
       "createdAt": "2026-04-24T09:00:00.000Z",
       "updatedAt": "2026-04-24T09:00:00.000Z"
+    },
+    {
+      "title": "안녕",
+      "author": "안녕",
+      "content": "안녕",
+      "coverImageUrl": "",
+      "createdAt": "2026-05-26T04:47:38.281Z",
+      "updatedAt": "2026-05-26T04:47:38.282Z",
+      "id": 2
     }
   ]
 }
