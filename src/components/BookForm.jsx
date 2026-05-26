@@ -14,10 +14,11 @@ function BookForm({
   const [title, setTitle] = useState(initialTitle);
   const [content, setContent] = useState(initialContent);
   const [author, setAuthor] = useState(initialAuthor);
- 
+
   const handleSubmit = () => {
     const bookData = {
       title,
+      author,
       author,
       content,
     };
@@ -29,7 +30,8 @@ function BookForm({
     setTitle(initialTitle);
     setContent(initialContent);
     setAuthor(initialAuthor);
-   
+       setAuthor(initialAuthor);
+    
     if (onCancel) {
       onCancel();
     }

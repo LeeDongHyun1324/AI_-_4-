@@ -18,5 +18,4 @@ function Navbar({ onNavigate }) {
   );
 }
 
-
 export default Navbar;

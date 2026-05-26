@@ -6,11 +6,11 @@ import BookListPage from './pages/BookListPage';
 import BookEditPage from './pages/BookEditPage';
 import BookDetailPage from './pages/BookDetailPage';
 import BookCreatePage from './pages/BookCreatePage';
- 
+
 function App() {
   const [page, setPage] = useState('home');
   const [selectedBookId, setSelectedBookId] = useState(null);
- 
+
   return (
     <>
       <Navbar onNavigate={setPage} />
