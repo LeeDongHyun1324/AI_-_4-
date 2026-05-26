@@ -21,10 +21,11 @@ function App() {
       {page === 'list' && <BookListPage onNavigate={setPage} 
                             setSelectedBookId={setSelectedBookId}
                             key={refreshTrigger}
-                                      onEditClick={(book) => {
-                                        setEditingBook(book);
-                                        setPage('edit');
-                                      }} />}
+                            onEditClick={(book) => {
+                                                    setEditingBook(book);
+                                                    setPage('edit');
+                                                  }
+                                        }/>}
       {page === 'edit' && <BookEditPage 
                       book={editingBook} 
                           onCancel={() => {
@@ -38,7 +39,13 @@ function App() {
                           }}
                           />}
       {page === 'create' && <BookCreatePage onNavigate={setPage} onEditClick={(book) => setEditingBook(book)}/>}
-      {page === "detail" && <BookDetailPage onNavigate={setPage} bookId={selectedBookId} />}
+      {page === "detail" && <BookDetailPage onNavigate={setPage} bookId={selectedBookId}
+                                            onEditClick={(book) => {
+                                                              setEditingBook(book);
+                                                              setPage('edit');
+                                                            }
+                                                        }
+       />}
     </>
   );
 }
