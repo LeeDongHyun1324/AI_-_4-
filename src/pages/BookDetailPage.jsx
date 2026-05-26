@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import CoverImageGenerator from "../components/CoverImageGenerator";
+import { getBookById } from "../api/books";
+
+import "./BookDetailPage.css";
 
 function BookDetailPage({ onNavigate, bookId }) {
   const [book, setBook] = useState(null);
@@ -9,8 +12,9 @@ function BookDetailPage({ onNavigate, bookId }) {
   useEffect(() => {
     async function fetchBook() {
       try {
-        const response = await fetch(`http://localhost:3000/books/${bookId}`); //현재 db.json파일 1개만 추가해놓은 상태로 하드코딩. 배포 시 http://localhost:3000/books/${id}로 변경
-        const data = await response.json();
+        const data = await getBookById(bookId);
+        // const response = await fetch(`http://localhost:3000/books/${bookId}`); //현재 db.json파일 1개만 추가해놓은 상태로 하드코딩. 배포 시 http://localhost:3000/books/${id}로 변경
+        // const data = await response.json();
         setBook(data);
       } catch (error) {
         console.error("도서 상세 조회 실패:", error);
@@ -21,6 +25,7 @@ function BookDetailPage({ onNavigate, bookId }) {
     fetchBook();
   }, [bookId]);
 
+
   //AI 표지 이미지 생성 후 상태 업데이트
   function handleImageGenerated(imageUrl) {
     setBook((prev) => ({ ...prev, coverImageUrl: imageUrl }));
@@ -30,7 +35,7 @@ function BookDetailPage({ onNavigate, bookId }) {
   if (!book) return <p>도서 정보를 찾을 수 없습니다.</p>;
 
   return (
-    <main>
+    <main className="detail-page">
       {/* 도서 제목 */}
       <h2 className="book-title">{book.title}</h2>
 
@@ -53,7 +58,7 @@ function BookDetailPage({ onNavigate, bookId }) {
           width="250"
         />
       ) : (
-        <p className="book-cover">표지 이미지 없음</p>
+        <p className="book-cover-empty">표지 이미지 없음</p>
       )}
 
       {/* 도서 상세 정보 */}
@@ -64,7 +69,7 @@ function BookDetailPage({ onNavigate, bookId }) {
       <p className="updatedAt">수정일: {book.updatedAt}</p>
       
       {/* 목록으로 돌아가기 버튼 */}
-      <button className="btn-back" onClick={() => onNavigate("list")}>도서 목록으로 돌아가기</button>
+      <button className="detail-back-btn" onClick={() => onNavigate("list")}>도서 목록으로 돌아가기</button>
     </main>
   );
 }
