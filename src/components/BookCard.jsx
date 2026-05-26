@@ -12,10 +12,7 @@ export default function BookCard({ book, onDelete, onNavigate }) {
         <p className="card-content">{book.content}</p>
       </div>
       <div className="card-buttons">
-        <button
-          className="btn-edit"
-          onClick={() => onNavigate('edit')}
-        >
+        <button className="btn-edit" onClick={() => onNavigate("edit")}>
           수정
         </button>
         <button className="btn-delete" onClick={() => onDelete(book.id)}>
