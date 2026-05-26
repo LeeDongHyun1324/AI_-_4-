@@ -12,16 +12,17 @@ export default function BookCard({ book, onDelete, onEdit }) {
         <p className="card-content">{book.content}</p>
       </div>
       <div className="card-buttons">
-        <button className="btn-edit" onClick={(e) => {
-          e.stopPropagation();
-          onEdit(book);
-          }}>
+        <button className="btn-edit" onClick={(e) => 
+            {e.stopPropagation();
+            onEdit(book);
+            }}
+          >
           수정
         </button>
-        <button className="btn-delete" onClick={(e) => {
-          e.stopPropagation();
-          onDelete(book.id);
-          }}>
+        <button className="btn-delete" onClick={(e) => 
+            {e.stopPropagation();
+            onDelete(book.id);
+            }}>
           삭제
         </button>
       </div>

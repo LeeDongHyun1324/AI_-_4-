@@ -26,6 +26,15 @@
       "createdAt": "2026-05-26T06:29:05.950Z",
       "updatedAt": "2026-05-26T06:29:05.951Z",
       "id": "fMtzbhX"
+    },
+    {
+      "title": ".",
+      "author": ".",
+      "content": ".",
+      "coverImageUrl": "",
+      "createdAt": "2026-05-26 16:09:58",
+      "updatedAt": "2026-05-26 16:09:58",
+      "id": "K8j280p"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
