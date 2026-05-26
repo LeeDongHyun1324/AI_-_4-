@@ -1,5 +1,7 @@
 // OpenAI 이미지 생성 API 호출 → 바로 쓸 수 있는 Data URL(imageSrc)을 반환
-export async function generateCoverImage(apiKey, prompt, quality) {
+export async function generateCoverImage(book, apiKey,quality) {
+  const prompt = `책 제목: ${book.title}\n책 내용: ${book.content}\n위 내용을 바탕으로 정면으로 바라본 2D 책 표지 이미지를 생성해줘.`;
+
   const res = await fetch('https://api.openai.com/v1/images/generations', {
     method: 'POST',
     headers: {

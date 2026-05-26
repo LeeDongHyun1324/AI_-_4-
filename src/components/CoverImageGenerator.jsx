@@ -16,11 +16,9 @@ export default function CoverImageGenerator({ book, onImageGenerated }) {
  
     setLoading(true);
     try {
-      const prompt = `책 제목: ${book.title}\n책 내용: ${book.content}\n위 내용을 바탕으로 정면으로 바라본 2D 책 표지 이미지를 생성해줘.`;
-
       // 1~2단계: OpenAI 호출 → Data URL 받기 (에러 처리는 openai.jsx 내부에서)
       // (b64Json 추출/방어/에러 처리는 openai.js 안에서 끝남)
-      const imageSrc = await generateCoverImage(userApiKey, prompt, selectedQuality);
+      const imageSrc = await generateCoverImage(book, userApiKey, selectedQuality);
  
       // 4단계: 생성된 이미지 URL을 db.json에 PATCH로 저장
       const patchRes = await fetch(`http://localhost:3000/books/${book.id}`, {
