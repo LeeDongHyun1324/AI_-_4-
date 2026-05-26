@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { getBooks, deleteBook } from '../api/books';
 import BookCard from '../components/BookCard';
 
-export default function BookListPage(onNavigate, onEditClick, setSelectedBookId) {
+export default function BookListPage({onNavigate, onEditClick, setSelectedBookId}) {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

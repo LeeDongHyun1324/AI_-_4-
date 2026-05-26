@@ -32,6 +32,16 @@ function BookEditPage({ book, onCancel, onSuccess }) {
         </div>
 
         <div className="input-group">
+          <input
+            type="text"
+            className="input-author"
+            placeholder="수정할 저자"
+            value={author}
+            onChange={(e) => setAuthor(e.target.value)}
+          />
+        </div>
+        
+        <div className="input-group">
           <textarea
             className="input-content"
             placeholder="수정할 내용"
