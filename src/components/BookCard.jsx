@@ -1,4 +1,4 @@
-export default function BookCard({ book, onDelete }) {
+export default function BookCard({ book, onDelete, onNavigate }) {
   return (
     <div className="book-card">
       {book.coverImageUrl ? (
