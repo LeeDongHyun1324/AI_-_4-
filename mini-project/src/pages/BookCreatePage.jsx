@@ -1,20 +1,20 @@
-import "../App.css";
-import BookForm from "../components/BookForm";
+// import "../App.css";
+// import BookForm from "../components/BookForm";
 
-function BookCreatePage() {
-  return (
-    <div className="page-container">
+// function BookCreatePage() {
+//   return (
+//     <div className="page-container">
 
-      <div className="form-box">
+//       <div className="form-box">
 
-        <h1 className="page-title">📚도서 등록</h1>
+//         <h1 className="page-title">📚도서 등록</h1>
 
-        <BookForm />
+//         <BookForm />
 
-      </div>
+//       </div>
 
-    </div>
-  );
-}
+//     </div>
+//   );
+// }
 
-export default BookCreatePage;
+// export default BookCreatePage;

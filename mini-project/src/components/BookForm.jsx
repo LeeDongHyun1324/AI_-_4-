@@ -1,27 +1,27 @@
-import "../App.css";
+// import "../App.css";
 
-function BookForm() {
-  return (
-    <form className="write-form">
+// function BookForm() {
+//   return (
+//     <form className="write-form">
 
-      <input
-        type="text"
-        className="input-title"
-        placeholder="도서명을 입력하세요"
-      />
+//       <input
+//         type="text"
+//         className="input-title"
+//         placeholder="도서명을 입력하세요"
+//       />
 
-      <textarea
-        className="input-content"
-        placeholder="도서의 내용을 입력하세요"
-      ></textarea>
+//       <textarea
+//         className="input-content"
+//         placeholder="도서의 내용을 입력하세요"
+//       ></textarea>
 
-      <div className="button-group">
-        <button type="submit" className="btn-submit">저장</button>
-        <button type="button" className="btn-cancel">취소</button>
-      </div>
+//       <div className="button-group">
+//         <button type="submit" className="btn-submit">저장</button>
+//         <button type="button" className="btn-cancel">취소</button>
+//       </div>
 
-    </form>
-  );
-}
+//     </form>
+//   );
+// }
 
-export default BookForm;
+// export default BookForm;
