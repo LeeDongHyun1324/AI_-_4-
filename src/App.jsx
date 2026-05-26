@@ -9,14 +9,16 @@ import BookCreatePage from './pages/BookCreatePage';
 
 function App() {
   const [page, setPage] = useState('home');
+  const [selectedBookId, setSelectedBookId] = useState(null);
 
   return (
     <>
       <Navbar onNavigate={setPage} />
       {page === 'home' && <HomePage onNavigate={setPage} />}
-      {page === 'list' && <BookListPage onNavigate={setPage} />}
+      {page === 'list' && <BookListPage onNavigate={setPage} setSelectedBookId={setSelectedBookId}/>}
       {page === 'edit' && <BookEditPage />}
       {page === 'create' && <BookCreatePage onNavigate={setPage} />}
+      {page === "detail" && <BookDetailPage onNavigate={setPage} bookId={selectedBookId} />}
     </>
   );
 }

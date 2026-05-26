@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import CoverImageGenerator from "../components/CoverImageGenerator";
 
-function BookDetailPage() {
+function BookDetailPage({ onNavigate, bookId }) {
   const [book, setBook] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -9,7 +9,7 @@ function BookDetailPage() {
   useEffect(() => {
     async function fetchBook() {
       try {
-        const response = await fetch("http://localhost:3000/books/1"); //현재 db.json파일 1개만 추가해놓은 상태로 하드코딩. 배포 시 http://localhost:3000/books/${id}로 변경
+        const response = await fetch(`http://localhost:3000/books/${bookId}`); //현재 db.json파일 1개만 추가해놓은 상태로 하드코딩. 배포 시 http://localhost:3000/books/${id}로 변경
         const data = await response.json();
         setBook(data);
       } catch (error) {
@@ -19,7 +19,7 @@ function BookDetailPage() {
       }
     }
     fetchBook();
-  }, []);
+  }, [bookId]);
 
   //AI 표지 이미지 생성 후 상태 업데이트
   function handleImageGenerated(imageUrl) {
@@ -64,7 +64,7 @@ function BookDetailPage() {
       <p className="updatedAt">수정일: {book.updatedAt}</p>
       
       {/* 목록으로 돌아가기 버튼 */}
-      <button className="btn-back">도서 목록으로 돌아가기</button>
+      <button className="btn-back" onClick={() => onNavigate("list")}>도서 목록으로 돌아가기</button>
     </main>
   );
 }
