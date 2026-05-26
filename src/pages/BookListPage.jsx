@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { getBooks, deleteBook } from '../api/books';
 import BookCard from '../components/BookCard';
 
-export default function BookListPage() {
+export default function BookListPage({ movePage }) {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -42,7 +42,9 @@ export default function BookListPage() {
         <ul className="book-list">
           {books.map((book) => (
             <li key={book.id}>
-              <BookCard book={book} onDelete={handleDelete} />
+              <BookCard book={book} onDelete={handleDelete}
+              onNavigate={movePage}
+               />
             </li>
           ))}
         </ul>
