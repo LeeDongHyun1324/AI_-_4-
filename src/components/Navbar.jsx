@@ -10,13 +10,12 @@ function Navbar({ onNavigate }) {
           도서 목록
         </button>
 
-        <button className="addBook" onClick={() => onNavigate('edit')}>
+        <button className="addBook" onClick={() => onNavigate('create')}>
           새 도서 등록
         </button>
       </div>
     </nav>
   );
 }
-
 
 export default Navbar;

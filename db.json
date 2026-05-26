@@ -1,20 +1,14 @@
 {
   "books": [
-            { "id": 1, 
-        "title": "title", 
-        "author": "kmim",
-        "content": "   1  ",
-        "coverImageUrl": "",
-        "createdAt": "2026-04-24T09:00:00.000Z",
-        "updatedAt": "2026-04-24T09:00:00.000Z"
-        }, 
-        { "id": 2, 
-        "title": "our great escape", 
-        "author": "just park",
-        "content": "Three of them were devil. and there's nothing at all.",
-        "coverImageUrl": "",
-        "createdAt": "2026-04-24T09:00:00.000Z",
-        "updatedAt": "2026-04-24T09:00:00.000Z"
-        }
-  ]
+    {
+      "id": "1",
+      "title": "샘플 도서",
+      "author": "홍길동",
+      "content": "샘플 도서 내용입니다.",
+      "coverImageUrl": "data:image/png;base64,undefined",
+      "createdAt": "2026-04-24T09:00:00.000Z",
+      "updatedAt": "2026-04-24T09:00:00.000Z"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

@@ -6,16 +6,19 @@ import { useState } from "react";
 function BookForm({
   initialTitle = "",
   initialContent = "",
+  initialAuthor = "",
   onSubmit,
   onCancel,
   submitText = "저장",
 }) {
   const [title, setTitle] = useState(initialTitle);
   const [content, setContent] = useState(initialContent);
+  const [author, setAuthor] = useState(initialAuthor);
 
   const handleSubmit = () => {
     const bookData = {
       title,
+      author,
       content,
     };
 
@@ -25,7 +28,8 @@ function BookForm({
   const handleCancel = () => {
     setTitle(initialTitle);
     setContent(initialContent);
-
+    setAuthor(initialAuthor);
+    
     if (onCancel) {
       onCancel();
     }
@@ -42,6 +46,14 @@ function BookForm({
           placeholder="도서 제목을 입력하세요"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+        />
+
+        <input
+          type="text"
+          className="input-author"
+          placeholder="저자를 입력하세요"
+          value={author}
+          onChange={(e) => setAuthor(e.target.value)}
         />
 
         <textarea
