@@ -27,4 +27,4 @@ export default function BookCard({ book, onDelete, onEdit }) {
       </div>
     </div>
   );
-}
+} 

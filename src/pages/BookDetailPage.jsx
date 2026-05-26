@@ -3,6 +3,7 @@ import CoverImageGenerator from "../components/CoverImageGenerator";
 import { getBookById } from "../api/books";
 
 function BookDetailPage({ onNavigate, bookId }) {
+function BookDetailPage({ onNavigate, bookId }) {
   const [book, setBook] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -21,6 +22,7 @@ function BookDetailPage({ onNavigate, bookId }) {
       }
     }
     fetchBook();
+  }, [bookId]);
   }, [bookId]);
 
   //AI 표지 이미지 생성 후 상태 업데이트
@@ -66,6 +68,7 @@ function BookDetailPage({ onNavigate, bookId }) {
       <p className="updatedAt">수정일: {book.updatedAt}</p>
       
       {/* 목록으로 돌아가기 버튼 */}
+      <button className="btn-back" onClick={() => onNavigate("list")}>도서 목록으로 돌아가기</button>
       <button className="btn-back" onClick={() => onNavigate("list")}>도서 목록으로 돌아가기</button>
     </main>
   );
