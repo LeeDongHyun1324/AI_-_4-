@@ -1,3 +1,6 @@
+import { useState } from 'react'
+import { updateBook } from '../api/books';
+
 function BookEditPage({ book, onCancel, onSuccess }) {
   const [title, setTitle] = useState(book.title);
   const [author, setAuthor] = useState(book.author);
@@ -23,6 +26,8 @@ function BookEditPage({ book, onCancel, onSuccess }) {
             type="text"
             className="input-title"
             placeholder="수정할 제목"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
           />
         </div>
 
@@ -30,12 +35,15 @@ function BookEditPage({ book, onCancel, onSuccess }) {
           <textarea
             className="input-content"
             placeholder="수정할 내용"
-          ></textarea>
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+          >
+          </textarea>
         </div>
 
         <div className="button-group">
-          <button className="btn-submit">저장</button>
-          <button className="btn-cancel">취소</button>
+          <button type="submit" className="btn-submit">저장</button>
+          <button type="button" className="btn-cancel" onClick={onCancel}>취소</button>
         </div>
       </form>
     </div>
