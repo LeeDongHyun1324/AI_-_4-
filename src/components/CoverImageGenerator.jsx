@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { generateCoverImage } from '../api/openai';
- 
+
 export default function CoverImageGenerator({ book, onImageGenerated }) {
   const [selectedStyle, setSelectedStyle] = useState('none');
   const [extraDetail, setExtraDetail] = useState('');
   const [userApiKey, setUserApiKey] = useState('');
   const [selectedQuality, setSelectedQuality] = useState('medium');
   const [loading, setLoading] = useState(false);
- 
+  const [generatedImages, setGeneratedImages] = useState([]);
+
   // AI 표지 이미지 생성
   async function handleGenerate() {
     // 방어 코드: API 키 없으면 중단
@@ -15,36 +16,20 @@ export default function CoverImageGenerator({ book, onImageGenerated }) {
       alert('OpenAI API Key를 먼저 입력해주세요.');
       return;
     }
- 
+
     setLoading(true);
     try {
-      // 1~2단계: OpenAI 호출 → Data URL 받기 (에러 처리는 openai.jsx 내부에서)
-      // (b64Json 추출/방어/에러 처리는 openai.js 안에서 끝남)
-      const imageSrc = await generateCoverImage(book, userApiKey, selectedQuality, selectedStyle, extraDetail);
- 
-      // 4단계: 생성된 이미지 URL을 db.json에 PATCH로 저장
-      const patchRes = await fetch(`http://localhost:3000/books/${book.id}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ coverImageUrl: imageSrc }),
-      });
- 
-      // PATCH 실패도 체크
-      if (!patchRes.ok) {
-        throw new Error('표지 저장에 실패했습니다.');
-      }
- 
-      // 5단계: 부모 컴포넌트에 이미지 URL 전달 (화면 갱신)
-      onImageGenerated(imageSrc);
+      // OpenAI 호출 → 이미지 배열 받기
+      const images = await generateCoverImage(book, userApiKey, selectedQuality, selectedStyle, extraDetail);
+      setGeneratedImages(images);
     } catch (err) {
       console.error(err);
       alert(err.message);
     } finally {
-      // 성공/실패 상관없이 로딩 해제
       setLoading(false);
     }
   }
- 
+
   return (
     <section>
       <h3>AI 표지 생성</h3>
@@ -115,7 +100,37 @@ export default function CoverImageGenerator({ book, onImageGenerated }) {
       <button type="button" onClick={handleGenerate} disabled={loading}>
         {loading ? '생성 중...' : 'AI 표지 생성'}
       </button>
+
+      {/* 생성된 이미지 선택 */}
+      {generatedImages.length > 0 && (
+        <div>
+          <p>표지를 선택하세요:</p>
+          {generatedImages.map((src, index) => (
+            <img
+              key={index}
+              src={src}
+              width="150"
+              style={{ cursor: 'pointer', margin: 8 }}
+              onClick={async () => {
+                // 선택한 이미지 db.json에 저장
+                const patchRes = await fetch(`http://localhost:3000/books/${book.id}`, {
+                  method: 'PATCH',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ coverImageUrl: src }),
+                });
+
+                if (!patchRes.ok) {
+                  alert('표지 저장에 실패했습니다.');
+                  return;
+                }
+
+                onImageGenerated(src);
+                setGeneratedImages([]);
+              }}
+            />
+          ))}
+        </div>
+      )}
     </section>
   );
 }
- 

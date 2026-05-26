@@ -11,42 +11,54 @@ export async function generateCoverImage(book, apiKey, quality, style, extraDeta
   표지에는 제목을 포함하고, 책의 분위기를 잘 표현해줘.
   `.trim();
 
-  const res = await fetch('https://api.openai.com/v1/images/generations', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${apiKey}`,
-    },
-    body: JSON.stringify({
-      model: 'gpt-image-2',
-      prompt,
-      n: 1,
-      size: '1024x1536',
-      quality,
-      output_format: 'png',
-    }),
+  const styleVariants = [
+    '독창적이고 실험적인 구도',
+    '전통적이고 안정적인 구도',
+    '감각적이고 현대적인 구도',
+  ];
+
+  const requests = styleVariants.map((variant) => {
+    const variantPrompt = `${prompt}\n[이미지 변형] ${variant}`;
+    return fetch('https://api.openai.com/v1/images/generations', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${apiKey}`,
+      },
+      body: JSON.stringify({
+        model: 'gpt-image-2',
+        prompt: variantPrompt,
+        n: 1,
+        size: '1024x1536',
+        quality,
+        output_format: 'png',
+      }),
+    });
   });
 
+  const responses = await Promise.all(requests);
+
   // 에러 응답 처리 (message가 없을 수 있어 fallback 추가)
-  if (!res.ok) {
-    let message = `OpenAI 요청 실패 (status: ${res.status})`;
-    try {
-      const errorData = await res.json();
-      message = errorData.error?.message || message;
-    } catch {
-      // 응답 본문이 JSON이 아닐 수도 있음 → 기본 메시지 사용
+  for (const r of responses) {
+    if (!r.ok) {
+      let message = `OpenAI 요청 실패 (status: ${r.status})`;
+      try {
+        const errorData = await r.json();
+        message = errorData.error?.message || message;
+      } catch {
+        // 응답 본문이 JSON이 아닐 수도 있음 → 기본 메시지 사용
+      }
+      throw new Error(message);
     }
-    throw new Error(message);
   }
 
-  const data = await res.json();
+  const dataArr = await Promise.all(responses.map(r => r.json()));
 
   // b64_json 누락 방어: 없으면 깨진 imageSrc가 저장되는 걸 막음
-  const b64Json = data.data?.[0]?.b64_json;
-  if (!b64Json) {
+  if (!dataArr[0].data?.[0]?.b64_json) {
     throw new Error('응답에 이미지 데이터(b64_json)가 없습니다.');
   }
 
-  // imageSrc(Data URL)까지 만들어서 반환 → 컴포넌트는 그대로 쓰기만 하면 됨
-  return `data:image/png;base64,${b64Json}`;
+  const images = dataArr.map(d => `data:image/png;base64,${d.data[0].b64_json}`);
+  return images;
 }
