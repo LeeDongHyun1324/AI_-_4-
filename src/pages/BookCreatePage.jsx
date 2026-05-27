@@ -1,5 +1,3 @@
-//창버전
- 
 import BookForm from "../components/BookForm";
 import { createBook } from "../api/books";
  
@@ -36,7 +34,7 @@ function BookCreatePage({ onNavigate }) {
         };
  
         await createBook(newBook);
- 
+
         alert("도서가 등록되었습니다.");
  
         onNavigate("list");

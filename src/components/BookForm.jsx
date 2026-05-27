@@ -19,6 +19,7 @@ function BookForm({
     const bookData = {
       title,
       author,
+      author,
       content,
     };
  
