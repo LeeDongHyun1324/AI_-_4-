@@ -1,16 +1,20 @@
 import { useEffect, useState } from "react";
-import CoverImageGenerator from "../components/CoverImageGenerator";
+import { deleteBook } from '../api/books';
 
-function BookDetailPage() {
+import CoverImageGenerator from "../components/CoverImageGenerator";
+import { getBookById } from "../api/books";
+
+import "./BookDetailPage.css";
+
+function BookDetailPage({ onNavigate, bookId, onEditClick }) {
   const [book, setBook] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  //도서 상세 조회
   useEffect(() => {
     async function fetchBook() {
       try {
-        const response = await fetch("http://localhost:3000/books/1");
-        const data = await response.json();
-        
+        const data = await getBookById(bookId);
         setBook(data);
       } catch (error) {
         console.error("도서 상세 조회 실패:", error);
@@ -18,35 +22,47 @@ function BookDetailPage() {
         setLoading(false);
       }
     }
-
     fetchBook();
-  }, []);
+  }, [bookId]);
 
+
+  //AI 표지 이미지 생성 후 상태 업데이트
   function handleImageGenerated(imageUrl) {
     setBook((prev) => ({ ...prev, coverImageUrl: imageUrl }));
   }
 
-  if (loading) {
-    return <p>도서 정보를 불러오는 중입니다...</p>;
-  }
+  if (loading) return <p>도서 정보를 불러오는 중입니다...</p>;
+  if (!book) return <p>도서 정보를 찾을 수 없습니다.</p>;
 
-  if (!book) {
-    return <p>도서 정보를 찾을 수 없습니다.</p>;
+  // 삭제 함수
+  async function handleDelete(id) {
+      if (!window.confirm('정말 삭제하시겠습니까?')) return;
+      try {
+        await deleteBook(id);
+        onNavigate("list") // 삭제 시 바로 목록으로 이동
+      } catch (err) {
+        alert(err.message);
+      }
   }
 
   return (
-    <main>
+    <main className="detail-page">
+      {/* 도서 제목 */}
       <h2 className="book-title">{book.title}</h2>
 
-      <button className="btn-edit">수정</button>
-      <button className="btn-delete">삭제</button>
+      {/* 수정/삭제 버튼 */}
+      <button className="btn-edit" onClick={() => onEditClick(book)}>
+        수정
+      </button>
+      <button className="btn-delete" onClick={() => handleDelete(book.id)}>삭제</button>
 
       <hr />
-
+      {/* AI 표지 생성 컴포넌트 */}
       <CoverImageGenerator book={book} onImageGenerated={handleImageGenerated} />
 
       <hr />
 
+      {/* 표지 이미지 출력 */}
       {book.coverImageUrl ? (
         <img
           className="book-cover"
@@ -55,16 +71,18 @@ function BookDetailPage() {
           width="250"
         />
       ) : (
-        <p className="book-cover">표지 이미지 없음</p>
+        <p className="book-cover-empty">표지 이미지 없음</p>
       )}
 
+      {/* 도서 상세 정보 */}
       <h3>책 내용</h3>
       <p className="book-content">{book.content}</p>
 
       <p className="createdAt">생성일: {book.createdAt}</p>
       <p className="updatedAt">수정일: {book.updatedAt}</p>
-
-      <button className="btn-back">도서 목록으로 돌아가기</button>
+      
+      {/* 목록으로 돌아가기 버튼 */}
+      <button className="detail-back-btn" onClick={() => onNavigate("list")}>도서 목록으로 돌아가기</button>
     </main>
   );
 }

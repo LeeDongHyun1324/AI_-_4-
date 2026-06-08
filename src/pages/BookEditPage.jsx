@@ -1,28 +1,51 @@
-function BookEditPage() {
+import { updateBook } from '../api/books';
+import BookForm from '../components/BookForm';
+
+function BookEditPage({ book, onCancel, onSuccess }) {
+  
+  const handleEdit = async (bookData) => {
+    if (!bookData.title.trim()) {
+      alert("도서 제목을 입력해주세요.");
+      return;
+    }
+
+    if (!bookData.author.trim()) {
+      alert("저자를 입력해주세요.");
+      return;
+    }
+
+    if (!bookData.content.trim()) {
+      alert("도서 내용을 입력해주세요.");
+      return;
+    }
+
+    try {
+      const updatedBookData = {
+        ...book,
+        ...bookData,
+        updatedAt: new Date().toLocaleString("sv-SE", {
+          timeZone: "Asia/Seoul",
+        }),
+      };
+
+      await updateBook(book.id, updatedBookData);
+      
+      alert('성공적으로 수정되었습니다.');
+      onSuccess();
+    } catch (err) {
+      alert(err.message);
+    }
+  };
+
   return (
-    <div className="edit-container">
-      <h1 className="page-title">도서 수정</h1>
-
-      <div className="input-group">
-        <input
-          type="text"
-          className="input-title"
-          placeholder="수정할 제목"
-        />
-      </div>
-
-      <div className="input-group">
-        <textarea
-          className="input-content"
-          placeholder="수정할 내용"
-        ></textarea>
-      </div>
-
-      <div className="button-group">
-        <button className="btn-submit">저장</button>
-        <button className="btn-cancel">취소</button>
-      </div>
-    </div>
+    <BookForm
+      initialTitle={book?.title}
+      initialAuthor={book?.author}
+      initialContent={book?.content}
+      onSubmit={handleEdit}
+      onCancel={onCancel}
+      submitText="수정 완료"
+    />
   );
 }
 
